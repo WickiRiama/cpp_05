@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:01:41 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/05 15:01:41 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/05 17:31:38 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 			  << " and grade " << grade << std::endl;
 	if (grade >= 1 && grade <= 150)
 		this->_grade = grade;
+	else if (grade > 150)
+		throw GradeTooLowException();
 	else
-		// throw exception;
-		;
+		throw GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &src) : _name(src.getName() + "_copy")
@@ -56,7 +57,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs)
 {
-	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade() << std::endl;
+	o << rhs.getName() << ", bureaucrat grade " << rhs.getGrade();
 	return o;
 }
 
@@ -83,8 +84,7 @@ void Bureaucrat::promote(void)
 				  << this->_grade << std::endl;
 	}
 	else
-		//throw exception
-		;
+		throw GradeTooHighException();
 }
 
 void Bureaucrat::retrograde(void)
@@ -96,6 +96,5 @@ void Bureaucrat::retrograde(void)
 				  << this->_grade << std::endl;
 	}
 	else
-		//throw exception
-		;
+		throw GradeTooLowException();
 }
