@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:52:24 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/06 17:10:46 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/06 17:24:13 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ Bureaucrat *instanciateBureaucrate(std::string name, int grade)
 	{
 		newBureaucrat = new Bureaucrat(name, grade);
 	}
-	catch (Bureaucrat::GradeTooLowException e)
+	catch (Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 		newBureaucrat = new Bureaucrat(name, 150);
 	}
-	catch (Bureaucrat::GradeTooHighException e)
+	catch (Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 		newBureaucrat = new Bureaucrat(name, 1);
@@ -41,12 +41,12 @@ Form *instanciateForm(std::string name, int requiredGrade)
 	{
 		newForm = new Form(name, requiredGrade);
 	}
-	catch (Form::GradeTooLowException e)
+	catch (Form::GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 		newForm = new Form(name, 150);
 	}
-	catch (Form::GradeTooHighException e)
+	catch (Form::GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 		newForm = new Form(name, 1);
@@ -86,7 +86,7 @@ int main(void)
 	{
 		chief->promote();
 	}
-	catch (Bureaucrat::GradeTooHighException e)
+	catch (Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 	}
@@ -94,7 +94,7 @@ int main(void)
 	{
 		bob->promote();
 	}
-	catch (Bureaucrat::GradeTooHighException e)
+	catch (Bureaucrat::GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 	}
@@ -105,7 +105,7 @@ int main(void)
 	{
 		bob->retrograde();
 	}
-	catch (Bureaucrat::GradeTooLowException e)
+	catch (Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 	}
@@ -113,7 +113,7 @@ int main(void)
 	{
 		maggot->retrograde();
 	}
-	catch (Bureaucrat::GradeTooLowException e)
+	catch (Bureaucrat::GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RES << std::endl;
 	}
