@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:01:41 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/06 17:09:07 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/09 17:08:23 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,19 @@ void Bureaucrat::retrograde(void)
 		throw GradeTooLowException();
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
 		form.beSigned(*this);
 		std::cout << this->_name << " signed " << form.getName() << std::endl;
 	}
-	catch (const Form::GradeTooLowException &e)
+	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cout << this->_name << " couldn't sign " << form.getName()
 				  << " because his grade is too low" << std::endl;
 	}
-	catch (const Form::AlreadySignedException &e)
+	catch (const AForm::AlreadySignedException &e)
 	{
 		std::cout << this->_name << " couldn't sign " << form.getName()
 				  << " because the form is already signed" << std::endl;

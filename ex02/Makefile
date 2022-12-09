@@ -6,7 +6,7 @@
 #    By: mriant <mriant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 13:40:10 by mriant            #+#    #+#              #
-#    Updated: 2022/12/06 12:49:51 by mriant           ###   ########.fr        #
+#    Updated: 2022/12/09 17:07:03 by mriant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = form
 
 SRCS = ${addprefix srcs/, \
 	Bureaucrat.cpp \
-	Form.cpp \
+	AForm.cpp \
+	ShrubberyCreationForm.cpp \
 	main.cpp}
 
 OBJS = ${SRCS:srcs/%.cpp=build/%.o}

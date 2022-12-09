@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:50:28 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/06 12:43:30 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/09 17:08:48 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <string>
 #include <iostream>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -55,7 +55,7 @@ public:
 	int getGrade(void) const;
 	void promote(void);
 	void retrograde(void);
-	void signForm(Form &form);
+	void signForm(AForm &form);
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs);
