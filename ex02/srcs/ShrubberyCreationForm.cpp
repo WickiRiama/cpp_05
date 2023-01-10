@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:56:54 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 11:34:40 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:20:43 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
 {
-	(void) rhs;
+	this->setSignedStatus(rhs.getSignedStatus());
 	return *this;
 }
 

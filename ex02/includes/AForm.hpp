@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:28:07 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 11:25:18 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:19:19 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ private:
 	int const _requiredSignGrade;
 	int const _requiredExecGrade;
 	std::string const _target;
+
+protected:
+	void setSignedStatus(bool status);
 
 public:
 	AForm(void);

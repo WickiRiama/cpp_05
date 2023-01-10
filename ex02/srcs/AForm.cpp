@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:27:44 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 11:20:52 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:20:04 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ std::string AForm::getTarget(void) const
 {
 	return this->_target;
 }
+
+void AForm::setSignedStatus(bool status)
+{
+	this->_signedStatus = status;
+}
+
 
 void AForm::beSigned(Bureaucrat &bureaucrat)
 {

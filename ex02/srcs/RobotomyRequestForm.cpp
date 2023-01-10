@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:59:12 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 13:47:55 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:21:10 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &rhs)
 {
-	(void) rhs;
+	this->setSignedStatus(rhs.getSignedStatus());
 	return *this;
 }
 

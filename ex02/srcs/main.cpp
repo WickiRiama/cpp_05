@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:52:24 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 13:35:42 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:28:48 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "colors.h"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 Bureaucrat *instanciateBureaucrate(std::string name, int grade)
 {
@@ -45,8 +46,15 @@ int main(void)
 
 	std::cout << std::endl
 			  << BCYN << "Forms" << RES << std::endl;
-	AForm *shrub = new ShrubberyCreationForm("target");
-	AForm *robot = new RobotomyRequestForm("Mrs. Umbrage");
+	ShrubberyCreationForm shrub("target");
+	RobotomyRequestForm robot("Mrs. Umbrage");
+	PresidentialPardonForm pardon("Alice");
+
+	std::cout << std::endl
+			  << BCYN << "Forms Copies" << RES << std::endl;
+	ShrubberyCreationForm shrubCopy(shrub);
+	RobotomyRequestForm robotCopy(robot);
+	PresidentialPardonForm pardonCopy(pardon);
 
 	std::cout << std::endl
 			  << BCYN << "Start status" << RES << std::endl;
@@ -100,38 +108,44 @@ int main(void)
 
 	std::cout << std::endl
 			  << BCYN << "Execute before signature" << RES << std::endl;
-	maggot->executeForm(*shrub);
-	bob->executeForm(*shrub);
-	chief->executeForm(*shrub);
-	maggot->executeForm(*robot);
-	bob->executeForm(*robot);
-	chief->executeForm(*robot);
+	maggot->executeForm(shrub);
+	bob->executeForm(shrub);
+	chief->executeForm(shrub);
+	maggot->executeForm(robot);
+	bob->executeForm(robot);
+	chief->executeForm(robot);
+	maggot->executeForm(pardon);
+	bob->executeForm(pardon);
+	chief->executeForm(pardon);
 
 	std::cout << std::endl
 			  << BCYN << "Sign Forms" << RES << std::endl;
-	maggot->signForm(*shrub);
-	bob->signForm(*shrub);
-	chief->signForm(*shrub);
-	maggot->signForm(*robot);
-	bob->signForm(*robot);
-	chief->signForm(*robot);
+	maggot->signForm(shrub);
+	bob->signForm(shrub);
+	chief->signForm(shrub);
+	maggot->signForm(robot);
+	bob->signForm(robot);
+	chief->signForm(robot);
+	maggot->signForm(pardon);
+	bob->signForm(pardon);
+	chief->signForm(pardon);
 
 	std::cout << std::endl
 			  << BCYN << "Execute after signature" << RES << std::endl;
-	maggot->executeForm(*shrub);
-	bob->executeForm(*shrub);
-	chief->executeForm(*shrub);
-	maggot->executeForm(*robot);
-	bob->executeForm(*robot);
+	maggot->executeForm(shrub);
+	bob->executeForm(shrub);
+	chief->executeForm(shrub);
+	maggot->executeForm(robot);
+	bob->executeForm(robot);
 	for (int i = 0; i < 10; i++)
-		chief->executeForm(*robot);
+		chief->executeForm(robot);
+	maggot->executeForm(pardon);
+	bob->executeForm(pardon);
+	chief->executeForm(pardon);
 
 	std::cout << std::endl
 			  << BCYN << "Destructors" << RES << std::endl;
 	delete bob;
 	delete chief;
 	delete maggot;
-	delete shrub;
-	delete robot;
-	// delete A150;
 }
