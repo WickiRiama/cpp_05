@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 12:59:12 by mriant            #+#    #+#             */
-/*   Updated: 2023/01/10 13:34:37 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 13:47:55 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &src) : AForm
 {
 	srand (time(NULL));
 	*this = src;
-	std::cout << "Shrubbery copy constructor called" << std::endl;
+	std::cout << "Robotomy copy constructor called" << std::endl;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void)
