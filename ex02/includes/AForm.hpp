@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 17:28:07 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:33:16 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 11:25:18 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ private:
 	std::string const _name;
 	bool _signedStatus;
 	int const _requiredSignGrade;
+	int const _requiredExecGrade;
+	std::string const _target;
 
 public:
 	AForm(void);
-	AForm(std::string name, int requiredGrade);
+	AForm(std::string name, int signGrade, int execGrade, std::string target);
 	AForm(AForm const &src);
 	virtual ~AForm(void);
 
@@ -38,7 +40,11 @@ public:
 	std::string getName(void) const;
 	bool getSignedStatus(void) const;
 	int getRequiredSignGrade(void) const;
+	int getRequiredExecGrade(void) const;
+	std::string getTarget(void) const;
+	
 	void beSigned(Bureaucrat &bureaucrat);
+	void checkRequirements(Bureaucrat const &executor) const;
 	virtual void execute(Bureaucrat const &executor) const = 0;
 
 	class GradeTooHighException : public std::exception

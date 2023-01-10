@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 13:50:28 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:08:48 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 11:34:04 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ public:
 	void promote(void);
 	void retrograde(void);
 	void signForm(AForm &form);
+	void executeForm(AForm const & form);
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &rhs);

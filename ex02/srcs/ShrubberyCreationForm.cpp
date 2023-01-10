@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:56:54 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:43:19 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 11:34:40 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,20 @@
 // Constructors
 //==============================================================================
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("shrubbery", 145),
-													 _requestedExecGrade(137),
-													 _target("noTarget")
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("shrubbery", 145,
+													 137, "noTarget")
 {
 	std::cout << "Shrubbery default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145),
-																   _requestedExecGrade(137),
-																   _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145,
+																   137, target)
 {
-	std::cout << "Shrubbery constructor called with target " << this->_target
+	std::cout << "Shrubbery constructor called with target " << this->getTarget()
 			  << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) : AForm(src.getName() + "_copy", 145),
-																				 _requestedExecGrade(137), 
-																				 _target(src.getTarget())
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &src) : AForm(src.getName() + "_copy", 145, 137, src.getTarget())
 {
 	*this = src;
 	std::cout << "Shrubbery copy constructor called" << std::endl;
@@ -64,18 +60,25 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm co
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	if (this->getSignedStatus() == 0)
-		throw ShrubberyCreationForm::FormNotSignedException();
-	else if (executor.getGrade() > this->_requestedExecGrade)
-		throw ShrubberyCreationForm::GradeTooLowException();
-	else
-		this->drawTrees(this->_target);
+	try
+	{
+		this->checkRequirements(executor);
+	}
+	catch(AForm::FormNotSignedException &e)
+	{
+		throw AForm::FormNotSignedException();
+	}
+	catch (AForm::GradeTooLowException &e)
+	{
+		throw AForm::GradeTooLowException();
+	}
+	this->drawTrees();
 }
 
-void ShrubberyCreationForm::drawTrees(std::string target) const
+void ShrubberyCreationForm::drawTrees(void) const
 {
 	std::ofstream file;
-	std::string fileName = target + "_shrubbery";
+	std::string fileName = this->getTarget() + "_shrubbery";
 
 	file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
 	try
@@ -109,15 +112,4 @@ void ShrubberyCreationForm::drawTrees(std::string target) const
 		return;
 	}
 
-}
-
-int ShrubberyCreationForm::getRequestedExecGrade(void) const
-{
-	return this->_requestedExecGrade;
-}
-
-
-std::string ShrubberyCreationForm::getTarget(void) const
-{
-	return this->_target;
 }

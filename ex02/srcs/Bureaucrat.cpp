@@ -6,11 +6,12 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:01:41 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:08:23 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 12:56:01 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "colors.h"
 
 //==============================================================================
 // Constructors
@@ -115,5 +116,24 @@ void Bureaucrat::signForm(AForm &form)
 	{
 		std::cout << this->_name << " couldn't sign " << form.getName()
 				  << " because the form is already signed" << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch(AForm::FormNotSignedException &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName()
+				  << " because the form is not signed" << std::endl;
+	}
+	catch (AForm::GradeTooLowException &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName()
+				  << " because his grade is too low" << std::endl;
 	}
 }

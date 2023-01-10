@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:52:24 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:41:11 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 13:35:42 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "AForm.hpp"
 #include "colors.h"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 Bureaucrat *instanciateBureaucrate(std::string name, int grade)
 {
@@ -35,26 +36,6 @@ Bureaucrat *instanciateBureaucrate(std::string name, int grade)
 	return newBureaucrat;
 }
 
-// AForm *instanciateForm(std::string name, int requiredGrade)
-// {
-// 	AForm *newForm;
-// 	try
-// 	{
-// 		newForm = new AForm(name, requiredGrade);
-// 	}
-// 	catch (AForm::GradeTooLowException &e)
-// 	{
-// 		std::cout << RED << e.what() << RES << std::endl;
-// 		newForm = new AForm(name, 150);
-// 	}
-// 	catch (AForm::GradeTooHighException &e)
-// 	{
-// 		std::cout << RED << e.what() << RES << std::endl;
-// 		newForm = new AForm(name, 1);
-// 	}
-// 	return newForm;
-// }
-
 int main(void)
 {
 	std::cout << BCYN << "Bureaucrats" << RES << std::endl;
@@ -64,24 +45,14 @@ int main(void)
 
 	std::cout << std::endl
 			  << BCYN << "Forms" << RES << std::endl;
-	ShrubberyCreationForm forest("target");
-	forest.drawTrees("target");
-	// AForm unnamedForm;
-	// AForm *A80 = instanciateForm("A80", 80);
-	// AForm A80_cpy = AForm(*A80);
-	// AForm *A150 = instanciateForm("A150", 150);
-	// AForm *A1 = instanciateForm("A1", 1);
+	AForm *shrub = new ShrubberyCreationForm("target");
+	AForm *robot = new RobotomyRequestForm("Mrs. Umbrage");
 
 	std::cout << std::endl
 			  << BCYN << "Start status" << RES << std::endl;
 	std::cout << "Chief: " << *chief << std::endl
 			  << "Bob: " << *bob << std::endl
 			  << "Maggot: " << *maggot << std::endl;
-	// std::cout << "Default form: " << unnamedForm << std::endl
-	// 		  << "A80: " << *A80 << std::endl
-	// 		  << "Copy: " << A80_cpy << std::endl
-	// 		  << "A1: " << *A1 << std::endl
-	// 		  << "A150: " << *A150 << std::endl;
 
 	std::cout << std::endl
 			  << BCYN << "Promotions" << RES << std::endl;
@@ -122,34 +93,45 @@ int main(void)
 	}
 
 	std::cout << std::endl
-			  << BCYN << "Sign Forms" << RES << std::endl;
-	// maggot->signForm(*A1);
-	// maggot->signForm(*A80);
-	// maggot->signForm(*A150);
-	// bob->signForm(*A1);
-	// bob->signForm(*A80);
-	// bob->signForm(*A150);
-	// chief->signForm(*A1);
-	// chief->signForm(*A80);
-	// chief->signForm(*A150);
-
-	std::cout << std::endl
 			  << BCYN << "End status" << RES << std::endl;
 	std::cout << "Chief: " << *chief << std::endl
 			  << "Bob: " << *bob << std::endl
 			  << "Maggot: " << *maggot << std::endl;
-	// std::cout << "Default form: " << unnamedForm << std::endl
-	// 		  << "A80: " << *A80 << std::endl
-	// 		  << "Copy: " << A80_cpy << std::endl
-	// 		  << "A1: " << *A1 << std::endl
-	// 		  << "A150: " << *A150 << std::endl;
+
+	std::cout << std::endl
+			  << BCYN << "Execute before signature" << RES << std::endl;
+	maggot->executeForm(*shrub);
+	bob->executeForm(*shrub);
+	chief->executeForm(*shrub);
+	maggot->executeForm(*robot);
+	bob->executeForm(*robot);
+	chief->executeForm(*robot);
+
+	std::cout << std::endl
+			  << BCYN << "Sign Forms" << RES << std::endl;
+	maggot->signForm(*shrub);
+	bob->signForm(*shrub);
+	chief->signForm(*shrub);
+	maggot->signForm(*robot);
+	bob->signForm(*robot);
+	chief->signForm(*robot);
+
+	std::cout << std::endl
+			  << BCYN << "Execute after signature" << RES << std::endl;
+	maggot->executeForm(*shrub);
+	bob->executeForm(*shrub);
+	chief->executeForm(*shrub);
+	maggot->executeForm(*robot);
+	bob->executeForm(*robot);
+	for (int i = 0; i < 10; i++)
+		chief->executeForm(*robot);
 
 	std::cout << std::endl
 			  << BCYN << "Destructors" << RES << std::endl;
 	delete bob;
 	delete chief;
 	delete maggot;
-	// delete A1;
-	// delete A80;
+	delete shrub;
+	delete robot;
 	// delete A150;
 }

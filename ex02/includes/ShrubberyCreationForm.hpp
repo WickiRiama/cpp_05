@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:47:49 by mriant            #+#    #+#             */
-/*   Updated: 2022/12/09 17:34:35 by mriant           ###   ########.fr       */
+/*   Updated: 2023/01/10 11:25:13 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 class ShrubberyCreationForm : public AForm
 {
 private:
-	int const _requestedExecGrade;
-	std::string const _target;
 	ShrubberyCreationForm(void);
 
 public:
@@ -30,9 +28,7 @@ public:
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
 
 	virtual void execute(Bureaucrat const &executor) const;
-	void drawTrees(std::string target) const;
-	int getRequestedExecGrade(void) const;
-	std::string getTarget(void) const;
+	void drawTrees(void) const;
 };
 
 #endif
