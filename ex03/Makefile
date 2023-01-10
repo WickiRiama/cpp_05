@@ -6,7 +6,7 @@
 #    By: mriant <mriant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 13:40:10 by mriant            #+#    #+#              #
-#    Updated: 2023/01/10 14:11:46 by mriant           ###   ########.fr        #
+#    Updated: 2023/01/10 15:31:46 by mriant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS = ${addprefix srcs/, \
 	ShrubberyCreationForm.cpp \
 	RobotomyRequestForm.cpp \
 	PresidentialPardonForm.cpp \
+	Intern.cpp \
 	main.cpp}
 
 OBJS = ${SRCS:srcs/%.cpp=build/%.o}
